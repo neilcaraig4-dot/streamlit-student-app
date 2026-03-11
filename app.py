@@ -131,8 +131,6 @@ elif page == "About":
     # Optional info box
     st.info("💡 Tip: Use this app daily to track your study habits and improve productivity over time!")
     
-    # Optional success box
-    st.success("✅ Built with Streamlit using 20+ UI components for an interactive experience!")
 
 
 

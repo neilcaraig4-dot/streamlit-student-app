@@ -69,10 +69,10 @@ elif page == "About":
     
     # Add a small banner image
     st.image(
-        "https://images.unsplash.com/photo-1581093588401-0a9c44b53a2a?auto=format&fit=crop&w=800&q=80",
-        caption="Track your productivity and stay motivated!",
-        use_column_width=True
-    )
+    "https://images.unsplash.com/photo-1581091012184-d4a16cc81e8b?auto=format&fit=crop&w=800&q=80",
+    caption="Track your productivity and stay motivated!",
+    use_column_width=True
+)
 
     st.header("🎯 Use Case")
     st.write(
@@ -114,3 +114,4 @@ elif page == "About":
     
     # Optional success box
     st.success("✅ Built with Streamlit using 20+ UI components for an interactive experience!")
+

@@ -66,12 +66,6 @@ elif page == "Tracker":
 # --- ABOUT PAGE -- 
 elif page == "About":
     st.title("ℹ️ About Student Productivity Tracker App")
-    
-    # Add a small banner image
-    st.image(
-    caption="Track your productivity and stay motivated!",
-    use_column_width=True
-)
 
     st.header("🎯 Use Case")
     st.write(
@@ -113,5 +107,6 @@ elif page == "About":
     
     # Optional success box
     st.success("✅ Built with Streamlit using 20+ UI components for an interactive experience!")
+
 
 

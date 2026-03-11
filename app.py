@@ -1,22 +1,25 @@
 import streamlit as st
 from datetime import date, time
+import pandas as pd
+import random
 
-# Set page config
-st.set_page_config(page_title="Student Productivity Tracker")
+# -------------------- Page Config --------------------
+st.set_page_config(
+    page_title="Student Productivity Tracker",
+    page_icon="🎓",
+    layout="wide"
+)
 
-# Sidebar navigation
+# -------------------- Sidebar Navigation --------------------
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Tracker", "About"])
+page = st.sidebar.radio("Go to", ["Home", "Tracker", "Achievements", "Tips", "About"])
 
-# --- HOME PAGE ---
+# -------------------- HOME PAGE --------------------
 if page == "Home":
     st.title("🎓 Student Productivity Tracker")
-    
-    # Intro header and subheader
     st.header("Welcome!")
     st.subheader("Track your study habits and productivity with ease")
     
-    # Info box for beginners
     st.info(
         """
         This app helps you monitor your **study hours**, **mood**, and **skills practiced**.
@@ -30,69 +33,126 @@ if page == "Home":
     - Track your mood and motivation 😊  
     - Record skills practiced 🎯  
     - Get feedback and see your progress 📊  
-    - Enjoy fun animations 🎈
+    - Earn achievements and badges 🏆
     """)
     
-    # Add an image with a caption
     st.image(
         "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
         caption="Stay focused and motivated!",
         use_column_width=True
     )
-    
-    # Add a beginner-friendly video
     st.video("https://www.youtube.com/watch?v=rfscVS0vtbw")
-    
-    # Fun celebration animation
     st.balloons()
 
-# --- TRACKER PAGE ---
+# -------------------- TRACKER PAGE --------------------
 elif page == "Tracker":
     st.title("📊 Study Tracker")
+
+    col1, col2 = st.columns(2)
     
-    # User inputs
-    name = st.text_input("Enter your name")
-    age = st.number_input("Enter your age", 10, 100)
+    with col1:
+        name = st.text_input("Enter your name")
+        age = st.number_input("Enter your age", 10, 100)
+        favorite_subject = st.selectbox(
+            "Favorite Subject", ["Math", "Programming", "Science", "History"]
+        )
+        mood = st.radio("Mood today", ["Happy", "Neutral", "Tired", "Stressed"])
+        skills = st.multiselect(
+            "Skills you practiced today",
+            ["Coding", "Writing", "Problem Solving", "Reading", "Drawing", "Public Speaking"]
+        )
     
-    study_hours = st.slider("Hours studied today", 0, 12)
+    with col2:
+        study_hours = st.slider("Hours studied today", 0, 12)
+        reminder = st.checkbox("Enable study reminder")
+        study_date = st.date_input("Study Date", date.today())
+        study_time = st.time_input("Study Time", time(hour=9, minute=0))
+        color_theme = st.color_picker("Pick your theme color", "#00f900")
+        uploaded_file = st.file_uploader(
+            "Upload your study notes (optional)", type=["txt", "pdf", "jpg", "png"]
+        )
     
-    favorite_subject = st.selectbox(
-        "Favorite Subject",
-        ["Math", "Programming", "Science", "History"]
-    )
-    
-    mood = st.radio(
-        "Mood today",
-        ["Happy", "Neutral", "Tired", "Stressed"]
-    )
-    
-    skills = st.multiselect(
-        "Skills you practiced today",
-        ["Coding", "Writing", "Problem Solving", "Reading"]
-    )
-    
-    reminder = st.checkbox("Enable study reminder")
-    
-    study_date = st.date_input("Select study date", date.today())
-    study_time = st.time_input("Select study time", time(hour=9, minute=0))
-    
-    color_theme = st.color_picker("Pick your theme color", "#00f900")
-    
-    uploaded_file = st.file_uploader("Upload your study notes (optional)", type=["txt", "pdf"])
+    with st.expander("Additional Notes"):
+        notes = st.text_area("Write any notes or reflections here:")
     
     if st.button("Calculate Productivity"):
-        # Simple productivity calculation
-        score = study_hours * 10 + len(skills)*5
+        # Productivity scoring
+        score = study_hours * 10 + len(skills) * 5
         st.metric("Productivity Score", score)
-        st.progress(min(score/100, 1.0))
-        st.success(f"Great job, {name}!")
+        st.progress(min(score / 100, 1.0))
         
-        st.snow()
+        if score >= 80:
+            st.success(f"Excellent productivity today, {name}! Keep it up!")
+            st.balloons()
+        elif score >= 50:
+            st.info(f"Good job, {name}. You are doing well!")
+        else:
+            st.warning(f"Don't worry, {name}. Try to study a bit more tomorrow!")
+        
+        summary_data = {
+            "Name": [name],
+            "Age": [age],
+            "Study Hours": [study_hours],
+            "Mood": [mood],
+            "Favorite Subject": [favorite_subject],
+            "Skills Practiced": [', '.join(skills)],
+            "Date": [study_date],
+            "Time": [study_time],
+        }
+        df = pd.DataFrame(summary_data)
+        st.table(df)
 
-# --- ABOUT PAGE -- 
+# -------------------- ACHIEVEMENTS PAGE --------------------
+elif page == "Achievements":
+    st.title("🏆 Achievements")
+    st.write("Here you can see milestones and badges for your study progress!")
+    
+    # Example badges
+    streak_days = random.randint(0, 10)
+    total_hours = random.randint(0, 50)
+    
+    st.markdown(f"**Daily Streak:** 🔥 {streak_days} days in a row")
+    st.markdown(f"**Hours Studied This Week:** ⏰ {total_hours} hours")
+    
+    # Fun animation for achievements
+    if streak_days >= 5:
+        st.balloons()
+    
+    st.markdown("""
+    - Earn badges by maintaining streaks  
+    - Unlock achievements for studying multiple skills  
+    - Keep track of your productivity over time
+    """)
+
+# -------------------- TIPS PAGE --------------------
+elif page == "Tips":
+    st.title("💡 Study Tips & Motivation")
+    tips = [
+        "Take short breaks every 50 minutes.",
+        "Review your notes daily.",
+        "Set realistic study goals.",
+        "Practice active recall.",
+        "Stay hydrated and rest well."
+    ]
+    
+    st.write("Here are some helpful study tips for students:")
+    
+    for tip in tips:
+        st.info(f"✅ {tip}")
+    
+    quote = "“The secret of getting ahead is getting started.” – Mark Twain"
+    st.success(f"Inspirational Quote: {quote}")
+
+# -------------------- ABOUT PAGE --------------------
 elif page == "About":
     st.title("ℹ️ About Student Productivity Tracker App")
-
+    
+    st.image(
+        "https://images.unsplash.com/photo-1581091012184-d4a16cc81e8b?auto=format&fit=crop&w=800&q=80",
+        caption="Track your productivity and stay motivated!",
+        use_column_width=True
+    )
+    
     st.header("🎯 Use Case")
     st.write(
         "This app helps students **track study time, mood, and skills** to monitor productivity, "
@@ -128,10 +188,5 @@ elif page == "About":
 - **Summary table** (with all user inputs for reference)
     """)
     
-    # Optional info box
     st.info("💡 Tip: Use this app daily to track your study habits and improve productivity over time!")
-    
-
-
-
-
+    st.success("✅ Built with Streamlit using 20+ UI components for an interactive experience!")

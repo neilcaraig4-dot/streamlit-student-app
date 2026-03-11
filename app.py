@@ -3,18 +3,18 @@ from datetime import date, time
 import pandas as pd
 import random
 
-# -------------------- Page Config --------------------
+# -- Page Config --
 st.set_page_config(
     page_title="Student Productivity Tracker",
     page_icon="🎓",
     layout="wide"
 )
 
-# -------------------- Sidebar Navigation --------------------
+# -- Sidebar Navigation --
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Home", "Tracker", "Achievements", "Tips", "About"])
 
-# -------------------- HOME PAGE --------------------
+# -- HOME PAGE --
 if page == "Home":
     st.title("🎓 Student Productivity Tracker")
     st.header("Welcome!")
@@ -44,7 +44,7 @@ if page == "Home":
     st.video("https://www.youtube.com/watch?v=rfscVS0vtbw")
     st.balloons()
 
-# -------------------- TRACKER PAGE --------------------
+# -- TRACKER PAGE --
 elif page == "Tracker":
     st.title("📊 Study Tracker")
 
@@ -102,7 +102,7 @@ elif page == "Tracker":
         df = pd.DataFrame(summary_data)
         st.table(df)
 
-# -------------------- ACHIEVEMENTS PAGE --------------------
+# -- ACHIEVEMENTS PAGE --
 elif page == "Achievements":
     st.title("🏆 Achievements")
     st.write("Here you can see milestones and badges for your study progress!")
@@ -124,11 +124,11 @@ elif page == "Achievements":
     - Keep track of your productivity over time
     """)
 
-# -------------------- TIPS PAGE --------------------
+# -- TIPS PAGE --
 elif page == "Tips":
     st.title("💡 Study Tips & Motivation")
     tips = [
-        "Remember to take a break",
+        "Remember to take a break.",
         "Review your notes daily.",
         "Set realistic study goals.",
         "Practice active recall.",
@@ -143,7 +143,7 @@ elif page == "Tips":
     quote = "“The secret of getting ahead is getting started.” – Mark Twain"
     st.success(f"Inspirational Quote: {quote}")
 
-# -------------------- ABOUT PAGE --------------------
+# -- ABOUT PAGE --
 elif page == "About":
     st.title("ℹ️ About Student Productivity Tracker App")
     
@@ -183,3 +183,4 @@ elif page == "About":
     """)
     
     st.info("💡 Tip: Use this app daily to track your study habits and improve productivity over time!")
+

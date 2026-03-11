@@ -63,34 +63,54 @@ elif page == "Tracker":
         
         st.snow()
 
-# --- ABOUT PAGE ---
+# --- ABOUT PAGE -- 
 elif page == "About":
-    st.title("ℹ️ About This App")
+    st.title("ℹ️ About Student Productivity Tracker App")
     
-    st.header("Use Case")
-    st.write("This app helps students track study time, mood, and skills to monitor productivity.")
+    # Add a small banner image
+    st.image(
+        "https://images.unsplash.com/photo-1581093588401-0a9c44b53a2a?auto=format&fit=crop&w=800&q=80",
+        caption="Track your productivity and stay motivated!",
+        use_column_width=True
+    )
+
+    st.header("🎯 Use Case")
+    st.write(
+        "This app helps students **track study time, mood, and skills** to monitor productivity, "
+        "receive feedback, and improve study habits over time."
+    )
     
-    st.header("Target Users")
-    st.write("College and high school students who want to track study habits.")
+    st.header("👥 Target Users")
+    st.write(
+        "Designed for **college and high school students** who want to keep track of their study sessions, "
+        "measure productivity, and stay motivated with interactive feedback."
+    )
     
-    st.header("Inputs")
-    st.write("""
-    - Name  
-    - Age  
-    - Study hours  
-    - Mood  
-    - Favorite subject  
-    - Skills practiced  
-    - Date and time of study  
-    - Color preference  
-    - File uploads (optional)  
-    - Reminder toggle
+    st.header("📝 Inputs Collected")
+    st.markdown("""
+- **Name**  
+- **Age**  
+- **Study hours** (slider input)  
+- **Mood** (radio buttons)  
+- **Favorite subject** (dropdown)  
+- **Skills practiced** (multi-select)  
+- **Date and time of study** (date & time picker)  
+- **Color preference** (color picker)  
+- **File uploads** (optional)  
+- **Reminder toggle** (checkbox)  
+- **Additional notes** (text area)
     """)
     
-    st.header("Outputs")
-    st.write("""
-    - Productivity score  
-    - Progress bar  
-    - Motivational messages and animations  
-    - Summary metrics
+    st.header("📊 Outputs Shown")
+    st.markdown("""
+- **Productivity score** (numeric metric)  
+- **Progress bar** (visual representation of completion)  
+- **Motivational messages & animations** (balloons/snow)  
+- **Summary table** (with all user inputs for reference)
     """)
+    
+    # Optional info box
+    st.info("💡 Tip: Use this app daily to track your study habits and improve productivity over time!")
+    
+    # Optional success box
+    st.success("✅ Built with Streamlit using 20+ UI components for an interactive experience!")

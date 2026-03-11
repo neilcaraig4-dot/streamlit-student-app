@@ -11,13 +11,39 @@ page = st.sidebar.radio("Go to", ["Home", "Tracker", "About"])
 # --- HOME PAGE ---
 if page == "Home":
     st.title("🎓 Student Productivity Tracker")
+    
+    # Intro header and subheader
     st.header("Welcome!")
-    st.subheader("Track your study habits and productivity")
+    st.subheader("Track your study habits and productivity with ease")
     
-    st.write("This app helps students monitor study hours, mood, and skills.")
+    # Info box for beginners
+    st.info(
+        """
+        This app helps you monitor your **study hours**, **mood**, and **skills practiced**.
+        Use it daily to stay motivated and improve your productivity!
+        """
+    )
     
-    st.image("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80")
+    st.write("Here’s what you can do on this app:")
+    st.markdown("""
+    - Log your study hours 🕒  
+    - Track your mood and motivation 😊  
+    - Record skills practiced 🎯  
+    - Get feedback and see your progress 📊  
+    - Enjoy fun animations 🎈
+    """)
+    
+    # Add an image with a caption
+    st.image(
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80",
+        caption="Stay focused and motivated!",
+        use_column_width=True
+    )
+    
+    # Add a beginner-friendly video
     st.video("https://www.youtube.com/watch?v=rfscVS0vtbw")
+    
+    # Fun celebration animation
     st.balloons()
 
 # --- TRACKER PAGE ---
@@ -107,6 +133,7 @@ elif page == "About":
     
     # Optional success box
     st.success("✅ Built with Streamlit using 20+ UI components for an interactive experience!")
+
 
 
 

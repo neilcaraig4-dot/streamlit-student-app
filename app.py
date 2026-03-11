@@ -128,7 +128,7 @@ elif page == "Achievements":
 elif page == "Tips":
     st.title("💡 Study Tips & Motivation")
     tips = [
-        "Take short breaks every 50 minutes.",
+        "Remember to take a break",
         "Review your notes daily.",
         "Set realistic study goals.",
         "Practice active recall.",
@@ -146,12 +146,6 @@ elif page == "Tips":
 # -------------------- ABOUT PAGE --------------------
 elif page == "About":
     st.title("ℹ️ About Student Productivity Tracker App")
-    
-    st.image(
-        "https://images.unsplash.com/photo-1581091012184-d4a16cc81e8b?auto=format&fit=crop&w=800&q=80",
-        caption="Track your productivity and stay motivated!",
-        use_column_width=True
-    )
     
     st.header("🎯 Use Case")
     st.write(
@@ -189,4 +183,3 @@ elif page == "About":
     """)
     
     st.info("💡 Tip: Use this app daily to track your study habits and improve productivity over time!")
-    st.success("✅ Built with Streamlit using 20+ UI components for an interactive experience!")
